@@ -239,7 +239,7 @@ menu{
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    row-gap: 1rem;
+    row-gap: .5rem;
 }
 
 li{
@@ -320,7 +320,7 @@ menu li h3{
 }
 
 .presentation{
-    width: 85%;
+    width: 100%;
     margin-top: 1rem;
     grid-area: a;
     display: flex;
@@ -396,6 +396,89 @@ menu li h3{
 .catch #asterisk{
     color: var(--third-color);
 }
+
+/* ========== responsive ========== */
+@media only screen and (min-width: 921px) and ( max-width: 1356px){
+    .presentation .white-h1{
+        font-size: 9rem;
+        color: var(--white-color);
+    }
+
+    .presentation .white-h2{
+        font-size: var(--h1-font-size);
+        color: var(--white-color);
+    }
+
+    .catch{
+        margin-right: 15rem;
+    }
+
+}
+
+@media only screen and (min-width: 631px) and (max-width: 920px){
+    .presentation .white-h1{
+        font-size: var(--big-font-size);
+        color: var(--white-color);
+    }
+
+    .presentation .white-h2{
+        font-size: var(--h2-font-size);
+        color: var(--white-color);
+    }
+
+    .portfolio__updates h2{
+        font-family: var(--text-font);
+        color: var(--fourth-color);
+        font-size: var(--h2-font-size);
+        margin-left: 4rem;
+    }
+    
+    .portfolio__updates h3{
+        font-family: var(--text-font);
+        color: var(--white-color);
+        font-size: var(--h3-font-size);
+        margin-left: 4rem;
+    }
+
+    .catch{
+        transform: translateY(4rem);
+    }
+
+    .catch p{
+        font-size: var(--h3-font-size);
+    }
+
+}
+
+@media only screen and (max-width: 630px){
+
+    .home{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: start;
+    }
+
+    .presentation .white-h1{
+        font-size: var(--big-font-size);
+        color: var(--white-color);
+    }
+
+    .presentation .white-h2{
+        font-size: var(--h2-font-size);
+        color: var(--white-color);
+    }
+
+    .catch{
+        margin-left: 4rem;
+    }
+
+    .catch p{
+        transform: translateX(0);
+    }
+}
+
+
 
 
 
