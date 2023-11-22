@@ -1,127 +1,76 @@
-/*===== GSAP ANIMATION =====*/
+const menuBtn = document.getElementById("burger");
+const closeBtn = document.getElementById("close-btn");
+const header = document.getElementById("header");
+const navlinks = document.querySelectorAll(".nav__links");
+const profileBtn = document.getElementById("link-logo");
+const section = document.querySelectorAll('section');
 
-// HOME
-gsap.from(".header", {opacity: 0, duration: 1, delay: 2, x:30, stagger: 0.2});
-gsap.from(".burger", {opacity: 0, duration: 1, delay: 2, x:30, stagger: 0.2});
-gsap.from(".home__title", {opacity: 0, duration: 1, delay: 1.4, x:-60, stagger: 0.2});
-gsap.from(".home__title2", {opacity: 0, duration: 1, delay: 1.8, y:30, stagger: 0.2});
-gsap.from(".portfolio__updates-h2", {opacity: 0, duration: 1, delay: 1.6, x:-40, stagger: 0.2});
-gsap.from(".portfolio__updates-h3", {opacity: 0, duration: 1, delay: 1.9, y:30, stagger: 0.2});
-gsap.from(".catch", {opacity: 0, duration: 1, delay: 1.9, y:30, stagger: 0.2});
 
-/*=============== GSAP ANIMATION ===============*/
-// GSAP SrollTrigger
+// MENU SHOW and HIDE
 
-gsap.registerPlugin(ScrollTrigger)
+const showMenu = (e) =>{
 
-const Scroll = new function() {
-	let sections
-	let page
-	let main
-	let scrollTrigger
-	let tl
-	let win
-	
-	// Init
-	this.init = () => {
-		sections = document.querySelectorAll('section')
-		page = document.querySelector('#page')
-		main = document.querySelector('main')
-		win = {
-			w: window.innerWidth,
-			h: window.innerHeight
-		}
-		
-		this.setupTimeline()
-		this.setupScrollTrigger()
-		window.addEventListener('resize', this.onResize)
-	}
-	
-	// Setup ScrollTrigger
-	this.setupScrollTrigger = () => {
-		page.style.height = (this.getTotalScroll() + win.h) + 'px'
-		
-		scrollTrigger = ScrollTrigger.create({
-			id: 'mainScroll',
-			trigger: 'main',
-			animation: tl,
-			pin: true,
-			scrub: true,
-			snap: {
-				snapTo: (value) => {
-					
-					let labels = Object.values(tl.labels)
-					
-					const snapPoints = labels.map(x => x / tl.totalDuration());
-					const proximity = 0.1
-					
-					console.log(tl.labels , tl.totalDuration(), labels, snapPoints)
-					
-					for (let i = 0; i < snapPoints.length; i++) {
-						if (value > snapPoints[i] - proximity && value < snapPoints[i] + proximity) {
-							return snapPoints[i]
-						}
-					}
-				},
-				duration: { min: 0.2, max: 0.6 },
-			},
-			start: 'top top',
-			end: '+=' + this.getTotalScroll(),
-		})
-	}
-	
-	// Setup timeline
-	this.setupTimeline = () => {
-		tl = gsap.timeline()
-		tl.addLabel("label-initial")
-		
-		sections.forEach((section, index) => {
-			const nextSection = sections[index+1]
-			if (!nextSection) return
-
-			tl.to(nextSection, {
-				y: -1 * nextSection.offsetHeight,
-				duration: nextSection.offsetHeight,
-				ease: 'linear',
-			})
-			.addLabel(`label${index}`)
-		})
-	}
-	
-	// On resize
-	this.onResize = () => {
-		win = {
-			w: window.innerWidth,
-			h: window.innerHeight
-		}
-		
-		this.reset()
-	}
-	
-	// Reset
-	this.reset = () => {
-		if (typeof ScrollTrigger.getById('mainScroll') === 'object') {
-			ScrollTrigger.getById('mainScroll').kill()
-		}
-		
-		if (typeof tl === 'object') {
-			tl.kill()
-			tl.seek(0)
-		}
-		
-		document.body.scrollTop = document.documentElement.scrollTop = 0
-		this.init()
-	}
-	
-	// Get total scroll
-	this.getTotalScroll = () => {
-		let totalScroll = 0
-		sections.forEach(section => {
-			totalScroll += section.offsetHeight
-		})
-		totalScroll -= win.h
-		return totalScroll
-	}
+    gsap.to(".header", {
+        duration: 1,
+        x: -510,
+        ease: "sin.inOut"
+    });
+    closeBtn.hidden = 'True';
+    menuBtn.classList.add('burger__hide');
+    e.preventDefault();
+    
 }
 
-Scroll.init()
+const hideMenu = (e) =>{
+    
+    gsap.to(".header", {
+        duration: .5,
+        x: 500,
+        ease: "sin.inOut"
+    });
+    // e.preventDefault(); // the link probleme issue origin ?
+    menuBtn.classList.remove('burger__hide');
+}
+
+/*===== MENU SHOW =====*/
+if(menuBtn){
+    menuBtn.addEventListener("click", showMenu);
+}
+
+/*===== MENU HIDDEN =====*/
+if(closeBtn){
+    closeBtn.addEventListener("click", hideMenu);
+}
+
+section.forEach(section =>{
+    section.addEventListener('click', hideMenu);
+})
+
+navlinks.forEach(link =>{
+	link.addEventListener('click', hideMenu);
+})
+
+menuBtn.addEventListener("mouseover", navBtnHovered);
+menuBtn.addEventListener("mouseleave", resetNavBtn);
+
+closeBtn.addEventListener("mouseover", navBtnHovered);
+closeBtn.addEventListener("mouseleave", resetNavBtn);
+
+
+
+
+
+/*===== Smooth Scroll =====*/
+
+const lenis = new Lenis()
+
+lenis.on('scroll', (e) => {
+  console.log(e)
+})
+
+function raf(time) {
+  lenis.raf(time)
+  requestAnimationFrame(raf)
+}
+
+requestAnimationFrame(raf)

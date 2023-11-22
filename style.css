@@ -87,7 +87,7 @@ body {
 main {
 	position: relative;
     height: 100vh;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 section {
@@ -148,9 +148,9 @@ image{
 
 /* ==================== HEADER ==================== */
 .header{
-    position: absolute;
+    position: fixed;
     top: 1%;
-    right: -100%;
+    right: -50rem;
     width: 50rem;
     height: 98%;
     border-radius: 3rem;
@@ -159,7 +159,9 @@ image{
     transition : background-color .3s cubic-bezier(.645, .045, .355, 1), height .4s ease-out;
     z-index: 500;
     
+
 }
+
 
 .header__container{
     width: 100%;
@@ -254,15 +256,27 @@ menu li h3{
 
 /* ======= burger BTN ======= */
 .burger{
-    position: absolute;
+    position: fixed;
     top: 1%;
     right: 1.5rem;
     z-index: 500;
-    font-size: 5rem;
+    width: 7rem;
+    height: 7rem;
+    backdrop-filter: blur(16px);
+    background-color: hsla(70, 5%, 25%, .5);
+    transition : background-color .3s cubic-bezier(.645, .045, .355, 1), height .4s ease-out;
+    display: flex;
+    justify-content: center;
+    border-radius: 5rem;
+}
+
+.burger__hide{
+    display: none;
 }
 
 .burger a{
     color: var(--white-color);
+    font-size: 5rem;
 }
 
 /* ======= close BTN ======= */
@@ -373,8 +387,8 @@ menu li h3{
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    border-top-left-radius: 5rem;
-    border-top-right-radius: 5rem;
+    /* border-top-left-radius: 5rem;
+    border-top-right-radius: 5rem; */
 }
 
 .about__presentation{
@@ -428,8 +442,8 @@ menu li h3{
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    border-top-left-radius: 5rem;
-    border-top-right-radius: 5rem;
+    /* border-top-left-radius: 5rem;
+    border-top-right-radius: 5rem; */
     row-gap: 5rem;
 }
 
