@@ -237,8 +237,9 @@ menu{
     height: 70%;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     align-items: center;
+    row-gap: 1rem;
 }
 
 li{
@@ -290,6 +291,23 @@ menu li h3{
 
 .close__btn a{
     color: var(--white-color);
+}
+
+.nav__links{
+    width: 40rem;
+    font-family: var(--text-font);
+    font-size: 2.1rem;
+    color: var(--white-color);
+    padding: 1.5rem 1rem;
+    text-align: center;
+    border-radius: 1rem;
+    transition: background-color .4s ease .05s, color .3s ease .05s;
+}
+
+.nav__links:hover{
+    background-color: hsla(54, 100%, 96%, .5);
+    color: var(--white-color);
+    cursor: pointer;
 }
 
 
@@ -424,10 +442,22 @@ menu li h3{
 }
 
 .about__img img{
+    width: 100%;
+    transform: scale(1);
+    transition: .3s ease-in-out;
+}
+
+.photo{
+    overflow: hidden;
+    position: relative;
     width: 55rem;
     border-radius: 50%;
     box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px;
-}    
+}
+
+.about__img img:hover{
+    transform: scale(1.5);
+}
 
 .about__location h2{
     font-family: var(--text-font);
@@ -711,4 +741,43 @@ menu li h3{
 
 .contact__special2{
     color: hsl(282, 48%, 46%);
+}
+
+/* ==================== CURSOR ==================== */
+.cursor__1{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background-color: var(--third-color);
+    opacity: 1;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: all .3s ease;
+    transition-property: background-color, transform;
+    transform-origin: 75% 75%;
+    z-index: 500;
+}
+
+.link-grow{
+    transform: scale(3);
+    background-color: var(--white-color);
+    box-shadow: 0 0 2rem var(--white-color),
+                0 0 6rem var(--white-color),
+                0 0 10rem var(--white-color);
+    opacity: .5;
+    z-index: 500;
+}
+
+.link-hovered{
+    transform: scale(2);
+    transform-origin: 100% 100%;
+    background-color: var(--white-color);
+    box-shadow: 0 0 2rem var(--white-color),
+                0 0 6rem var(--white-color),
+                0 0 10rem var(--white-color);
+    opacity: .5;
+    z-index: 10000;
 }
