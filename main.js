@@ -131,9 +131,6 @@ navlinks.forEach(link =>{
 	link.addEventListener('click', hideMenu);
 })
 
-menuBtn.addEventListener("mouseover", navBtnHovered);
-menuBtn.addEventListener("mouseleave", resetNavBtn);
-
 
 
 
